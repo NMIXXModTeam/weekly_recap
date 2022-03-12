@@ -1,6 +1,9 @@
 import praw
 import pandas as pd
 
+def hello():
+  return "Hello"
+
 def weekly_recap():
   # Define user agent
   user_agent = "praw_scraper_1.0"
