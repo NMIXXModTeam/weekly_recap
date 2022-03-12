@@ -8,11 +8,9 @@ import random
 async def meme(self, ctx, subred="memes"): # default subreddit is memes, later in the command you can select one of your choice (example: !meme python --> chooses r/python reddit post)
     msg = await ctx.send('Loading ... ')
 
-    reddit = asyncpraw.Reddit(client_id='clientid',
-                              client_secret='clientsecret',
-                              username='username',
-                              password='password',
-                              user_agent='useragent')
+    reddit = asyncpraw.Reddit(client_id='yxI4dSUvZzWGpuqHEl4DqA',
+                              client_secret='UDReCN0uxUF_56oAMGfmMTugmFPWbA',
+                              user_agent=user_agent)
 
     subreddit = await reddit.subreddit(subred)
     all_subs = []
