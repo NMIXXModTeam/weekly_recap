@@ -162,7 +162,8 @@ def hello():
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
           
-  return result_str
+  with open("weeklyrecap.txt", "w", encoding="utf-8") as text_file:
+    text_file.write(result_str)
 
 def recap():  
   return "hello2"
