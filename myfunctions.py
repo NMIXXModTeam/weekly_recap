@@ -1,7 +1,7 @@
 import praw
 import pandas as pd
 
-def hello():
+def recap():
   # Define user agent
   user_agent = "praw_scraper_1.0"
 
@@ -164,6 +164,3 @@ def hello():
           
   with open("weeklyrecap.txt", "w", encoding="utf-8") as text_file:
     text_file.write(result_str)
-
-def recap():  
-  return "hello2"
