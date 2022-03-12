@@ -1,13 +1,14 @@
 import praw
 import pandas as pd
+import os
 
 def recap():
   # Define user agent
   user_agent = "praw_scraper_1.0"
 
   # Create an instance of reddit class
-  reddit = praw.Reddit(client_id=process.env.CLIENTID,
-                       client_secret=process.env.CLIENTSECRET,
+  reddit = praw.Reddit(client_id=os.getenv('CLIENTID'),
+                       client_secret=os.getenv('CLIENTSECRET'),
                        user_agent=user_agent
   )
 
