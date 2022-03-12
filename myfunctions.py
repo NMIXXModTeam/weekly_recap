@@ -44,11 +44,11 @@ def recap():
 
 
   today = date.today()
-  offset = (today.weekday() - 1) % 7
-  last_tuesday = today - timedelta(days=offset)
+  offset = (today.weekday() - 2) % 7
+  last_wednesday = today - timedelta(days=offset)
 
-  start_last_week = (last_tuesday - datetime.timedelta(days=7)).strftime("%Y-%m-%d")# + " 09:00:00"
-  end_last_week = last_tuesday.strftime("%Y-%m-%d")# + " 08:59:59"
+  start_last_week = (last_wednesday - datetime.timedelta(days=7)).strftime("%Y-%m-%d")# + " 09:00:00"
+  end_last_week = last_wednesday.strftime("%Y-%m-%d")# + " 08:59:59"
 
   df['Timestamp'] = df.apply(lambda row: row['Title'].split(" ")[0], axis=1)
 
