@@ -14,5 +14,12 @@ async def on_message(message):
 
   if message.content.startswith("$weeklyrecap"):
     await message.channel.send(weekly_recap())
+@client.event
+async def on_message(message):
+  if message.author == client.user:
+    return
+
+  if message.content.startswith("$hello"):
+    await message.channel.send(hello())
 
 client.run('OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U')
