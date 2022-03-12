@@ -21,6 +21,8 @@ async def on_message(message):
     return
 
   if message.content.startswith("$hello"):
-    await message.channel.send(hello())
+    with open('file.txt', 'rb') as fp:
+      await message.channel.send(file=discord.File(fp, 'weeklyrecap.txt'))
+#    await message.channel.send(hello())
     
 client.run('OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U')
