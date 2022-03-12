@@ -14,7 +14,7 @@ async def on_message(message):
     return
 
   if message.content.startswith("$recap"):
-    hello()
+    recap()
     with open('weeklyrecap.txt', 'rb') as fp:
       await message.channel.send(file=discord.File(fp, 'weeklyrecap.txt'))
 #    await message.channel.send(recap())
