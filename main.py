@@ -17,6 +17,6 @@ async def on_message(message):
     hello()
     with open('weeklyrecap.txt', 'rb') as fp:
       await message.channel.send(file=discord.File(fp, 'weeklyrecap.txt'))
-#    await message.channel.send(hello())
+#    await message.channel.send(recap())
     
 client.run('OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U')
