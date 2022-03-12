@@ -4,5 +4,5 @@ import pandas as pd
 def hello():
   return "Hello World"
 
-def weekly_recap():  
+def recap():  
   return "hello2"
