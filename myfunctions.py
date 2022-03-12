@@ -167,4 +167,4 @@ def weekly_recap():
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
 
-  return result_str
+  return result_str[:4]
