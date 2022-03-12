@@ -19,40 +19,25 @@ async def on_message(message):
 
   if message.content.startswith("$weeklyrecap"):
     await message.channel.send(weekly_recap())
-@client.event
-async def on_message(message):
-  if message.author == client.user:
-    return
-
-  if message.content.startswith("$hello"):
-    await message.channel.send(hello())
-
-@commands.command(name="meme")
-async def meme(self, ctx, subred="memes"): # default subreddit is memes, later in the command you can select one of your choice (example: !meme python --> chooses r/python reddit post)
-    msg = await ctx.send('Loading ... ')
-
-    reddit = asyncpraw.Reddit(client_id='yxI4dSUvZzWGpuqHEl4DqA',
-                              client_secret='UDReCN0uxUF_56oAMGfmMTugmFPWbA',
-                              user_agent=user_agent)
-
-    subreddit = await reddit.subreddit(subred)
+    
+@client.command(aliases=['memes'])
+async def meme(ctx):
+    subreddit = await reddit.subreddit("memes")
     all_subs = []
-    top = subreddit.top(limit=250) # bot will choose between the top 250 memes
-
+    top = subreddit.top(limit = 200)
     async for submission in top:
-        all_subs.append(submission)
-
+      
+      all_subs.append(submission)
+    
     random_sub = random.choice(all_subs)
-
     name = random_sub.title
     url = random_sub.url
-
-    embed = Embed(title=f'__{name}__', colour=discord.Colour.random(), timestamp=ctx.message.created_at, url=url)
-
+    ups = random_sub.score
+    link = random_sub.permalink
+    comments = random_sub.num_comments
+    embed = discord.Embed(title=name,url=f"https://reddit.com{link}", color=ctx.author.color)
     embed.set_image(url=url)
-    embed.set_author(name=ctx.message.author, icon_url=ctx.author.avatar_url)
-    embed.set_footer(text='Here is your meme!')
+    embed.set_footer(text = f"👍{ups} 💬{comments}")
     await ctx.send(embed=embed)
-    await msg.edit(content=f'<https://reddit.com/r/{subreddit}/> :white_check_mark:') # < and > remove the embed link
-    return
+    
 client.run('OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U')
