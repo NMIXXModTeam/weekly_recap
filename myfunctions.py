@@ -162,7 +162,7 @@ def hello():
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
           
-  return "Hello World3"
+  return result_str
 
 def recap():  
   return "hello2"
