@@ -1,4 +1,5 @@
 import discord
+import os
 from myfunctions import recap
 
 client = discord.Client()
@@ -19,4 +20,4 @@ async def on_message(message):
       await message.channel.send(file=discord.File(fp, 'weeklyrecap.txt'))
 #    await message.channel.send(recap())
     
-client.run(process.env.TOKEN)
+client.run(os.getenv('TOKEN'))
