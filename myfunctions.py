@@ -2,7 +2,7 @@ import praw
 import pandas as pd
 
 def hello():
-  return "Hello"
+  return "Hello World"
 
 def weekly_recap():
   # Define user agent
