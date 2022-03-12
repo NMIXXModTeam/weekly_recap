@@ -180,5 +180,5 @@ async def on_message(message):
   if message.content.startswith("$weeklyrecap"):
     await message.channel.send("Hello")
 
-client.run(OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U)
+client.run('OTUxOTg5NDAxMTY3MjMzMTE2.YivfOA.Eu4RpqzDw5qJ8b-wkx5U_MhLw1U')
 
