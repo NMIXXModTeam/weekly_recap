@@ -1,5 +1,5 @@
 import discord
-from myfunctions import recap, hello
+from myfunctions import recap
 
 client = discord.Client()
 
