@@ -1,9 +1,4 @@
 import discord
-from discord import Embed
-from discord.ext import commands
-import asyncpraw
-import random
-import discord
 from myfunctions import weekly_recap, hello
 
 client = discord.Client()
