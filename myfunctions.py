@@ -1,7 +1,7 @@
 import praw
 import pandas as pd
 
-def recap():
+def hello():
   # Define user agent
   user_agent = "praw_scraper_1.0"
 
