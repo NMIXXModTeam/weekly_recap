@@ -14,7 +14,7 @@ def hello():
   # Create sub-reddit instance
   subreddit_name = "nmixx"
   subreddit = reddit.subreddit(subreddit_name)
-  return "Hello World"
+  return "Hello World2"
 
 def recap():  
   return "hello2"
