@@ -6,8 +6,8 @@ def recap():
   user_agent = "praw_scraper_1.0"
 
   # Create an instance of reddit class
-  reddit = praw.Reddit(client_id="yxI4dSUvZzWGpuqHEl4DqA",
-                       client_secret="UDReCN0uxUF_56oAMGfmMTugmFPWbA",
+  reddit = praw.Reddit(client_id=process.env.CLIENTID,
+                       client_secret=process.env.CLIENTSECRET,
                        user_agent=user_agent
   )
 
