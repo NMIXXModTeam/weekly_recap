@@ -37,13 +37,14 @@ def recap():
   df['Submission Date (UTC)'] = pd.to_datetime(df['Submission Date (UTC)'], unit='s')
 
   import datetime
-  from datetime import date
-  from datetime import timedelta
+  from datetime import date, timedelta, timezone
+  import pytz
   #today = datetime.datetime.now()
   #today = datetime.datetime(2022, 3, 8)
 
 
-  today = date.today()
+  today = datetime.datetime.now(timezone.utc)
+  today = today.replace(tzinfo=timezone.utc).astimezone(tz=pytz.timezone("Asia/Seoul"))
   offset = (today.weekday() - 1) % 7
   last_tuesday = today - timedelta(days=offset)
 
