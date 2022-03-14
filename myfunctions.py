@@ -73,7 +73,7 @@ def recap():
   sns_tiktok = sns[(sns['Title'].str.contains("tiktok", case=False))]
   sns_weibo = sns[(sns['Title'].str.contains("weibo", case=False))]
 
-  result_str = ""
+  result_str = "#Weekly r/NMIXX Recap\n"
 
   if not news_articles.empty:
       result_str += "\n\n"
