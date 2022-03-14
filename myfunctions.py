@@ -39,9 +39,9 @@ def recap():
   import datetime
   from datetime import date, timedelta, timezone
   import pytz
+  
   #today = datetime.datetime.now()
   #today = datetime.datetime(2022, 3, 8)
-
 
   today = datetime.datetime.now(timezone.utc)
   today = today.replace(tzinfo=timezone.utc).astimezone(tz=pytz.timezone("Asia/Seoul"))
