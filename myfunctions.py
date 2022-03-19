@@ -23,7 +23,7 @@ def recap():
   dates=[]
   link_flair_texts=[]
 
-  for submission in subreddit.new(limit=200):
+  for submission in subreddit.new(limit=500):
       titles.append(submission.title)
       permalinks.append(submission.permalink)
       dates.append(submission.created_utc)
