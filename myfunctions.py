@@ -164,8 +164,8 @@ def recap():
                                                             "]": r")",
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
-          
-    if not bts.empty:
+
+  if not bts.empty:
       result_str += "\n\n"
       result_str += "#Behind The Scenes\n"
       result_str += "|**Date**|**Title**|**Thread**|\n"
