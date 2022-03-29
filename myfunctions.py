@@ -69,6 +69,7 @@ def recap():
   vlives = df[(df['Flair'] == 'V Live')]
   variety = df[(df['Flair'] == 'Variety')]
   bts = df[(df['Flair'] == 'Behind The Scenes')]
+  videos = df[(df['Flair'] == 'Video')]
 
   sns_twitter = sns[(sns['Title'].str.contains("twitter", case=False))]
   sns_instagram = sns[(sns['Title'].str.contains("instagram", case=False))]
@@ -171,6 +172,17 @@ def recap():
       result_str += "|**Date**|**Title**|**Thread**|\n"
       result_str += ":--|:--|:--|\n"
       for index, row in bts.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+    if not video.empty:
+      result_str += "\n\n"
+      result_str += "#Videos\n"
+      result_str += "|**Date**|**Title**|**Thread**|\n"
+      result_str += ":--|:--|:--|\n"
+      for index, row in videos.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
                                                             "|": r" "}))
