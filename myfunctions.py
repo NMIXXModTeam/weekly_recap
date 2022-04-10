@@ -63,6 +63,8 @@ def recap():
 
   df = df[(df['Timestamp_Date']>=start_last_week) & (df['Timestamp_Date']<end_last_week)]
   df = df.sort_values(by='Timestamp_Date', ascending=1)
+  
+  df['Title'] = df['Title'].str[7:]
 
   news_articles  = df[(df['Flair'] == 'News') | (df['Flair'] == 'Article')]
   sns = df[(df['Flair'] == 'SNS')]
