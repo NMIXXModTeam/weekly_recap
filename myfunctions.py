@@ -192,3 +192,149 @@ def recap():
           
   with open("weeklyrecap.txt", "w", encoding="utf-8") as text_file:
     text_file.write(result_str)
+
+    
+def update_wiki:
+  from datetime import datetime
+
+  # Define user agent
+  user_agent = "praw_scraper_1.0"
+
+  # Create an instance of reddit class
+  reddit = praw.Reddit(client_id=os.getenv('CLIENTID'),
+                       client_secret=os.getenv('CLIENTSECRET'),
+                       user_agent=user_agent,
+                       username=os.getenv('REDDITID'),
+                       password=os.getenv('REDDITPW'),
+  )
+
+  # Create sub-reddit instance
+  subreddit_name = "nmixx"
+  subreddit = reddit.subreddit(subreddit_name)
+
+  import pandas as pd
+
+  df = pd.DataFrame()
+
+  titles=[]
+  permalinks=[]
+  dates=[]
+  link_flair_texts=[]
+
+  for submission in subreddit.new(limit=1000):
+      titles.append(submission.title)
+      permalinks.append(submission.permalink)
+      dates.append(submission.created_utc)
+      link_flair_texts.append(submission.link_flair_text)
+
+  df['Title'] = titles
+  df['Permalinks'] = permalinks
+  df['Submission Date (UTC)'] = dates
+  df['Flair'] = link_flair_texts
+
+  df['Submission Date (UTC)'] = pd.to_datetime(df['Submission Date (UTC)'], unit='s')
+  wiki_list = []
+
+variety_wiki = subreddit.wiki["variety"]
+
+wiki_list.append(variety_wiki)
+
+result_str = ""
+
+for wiki in wiki_list:
+    rv_date = pd.to_datetime(wiki.revision_date, unit='s')
+    
+    old_content = variety_wiki.content_md
+
+    df = df[df['Submission Date (UTC)']>=rv_date]
+    
+    print(rv_date)
+    print(df['Submission Date (UTC)'][0])
+    print(df)
+    
+    if not df.empty:
+        df['Timestamp'] = df.apply(lambda row: row['Title'].split(" ")[0], axis=1)
+
+        # not perfect but should be enough tbh
+        df = df[(df['Timestamp'].astype(str).str[:1] == '2') & (df['Timestamp'].str.len() == 6)]
+        
+        df['Title'] = df['Title'].str[7:]
+        df['Permalinks'] = "https://reddit.com" + df['Permalinks'].astype(str)
+
+    old_content = old_content.replace("Date|Title|Thread", "")
+    old_content = old_content.replace("---|---|---", "")
+    old_content = old_content.replace("[Thread]", "")
+
+    category_string = ''
+    flair_string = ''
+
+    for line in old_content.split('\n'):
+        if line[0] == "#" and line[1] != "#":
+            if "#Variety" in line:
+                flair_string = "Variety"
+        if line[:2] == "##":
+            category_string = line[2:]
+        if line[0] == "2" and len(line.split("|")[0]) == 6:
+            line_values = line.split("|")
+            perm_link = line_values[2].replace("(", "")
+            perm_link = perm_link.replace(")", "")
+            new_df_row = {'Timestamp': line_values[0], 'Title': line_values[1], 'Flair': flair_string.strip(), 'Permalinks': perm_link.strip()}
+            df = df.append(new_df_row, ignore_index = True)
+            
+
+    df = df.sort_values(by='Timestamp', ascending=1)
+    
+    if wiki.name == "variety":
+        variety = df[(df['Flair'] == 'Variety')]
+
+        variety_mixxtory = variety[(variety['Title'].str.contains("mixxtory", case=False))]
+        variety_picknmixx = variety[(variety['Title'].str.contains("pick nmixx", case=False))]
+        variety_radios = variety[(variety['Title'].str.contains("radio", case=False))]
+
+        drop_values = ["mixxtory", "pick nmixx", "radio"]
+        variety_videos = variety[~variety['Title'].str.contains('|'.join(drop_values), case=False)]
+
+        if not variety.empty:
+            result_str = "#Variety\n"
+
+            if not variety_mixxtory.empty:
+                result_str += "\n##MIXXTORY\n"
+                result_str += "|Date|Title|Thread|\n"
+                result_str += "---|---|---|\n"
+                for index, row in variety_mixxtory.iterrows():
+                    title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                                      "]": r")",
+                                                                      "|": r" "}))
+                    result_str += row['Timestamp'] + "|" + title_str + "|" + "[Thread](" + row['Permalinks'] + ")\n"
+
+            if not variety_picknmixx.empty:
+                result_str += "\n##PICK NMIXX\n"
+                result_str += "|Date|Title|Thread|\n"
+                result_str += "---|---|---|\n"
+                for index, row in variety_picknmixx.iterrows():
+                    title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                                      "]": r")",
+                                                                      "|": r" "}))
+                    result_str += row['Timestamp'] + "|" + title_str + "|" + "[Thread](" + row['Permalinks'] + ")\n"
+
+            if not variety_videos.empty:
+                result_str += "\n##Video Appearances\n"
+                result_str += "|Date|Title|Thread|\n"
+                result_str += "---|---|---|\n"
+                for index, row in variety_videos.iterrows():
+                    title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                                      "]": r")",
+                                                                      "|": r" "}))
+                    result_str += row['Timestamp'] + "|" + title_str + "|" + "[Thread](" + row['Permalinks'] + ")\n"
+
+            if not variety_radios.empty:
+                result_str += "\n##Radio Appearances\n"
+                result_str += "|Date|Title|Thread|\n"
+                result_str += "---|---|---|\n"
+                for index, row in variety_radios.iterrows():
+                    title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                                      "]": r")",
+                                                                      "|": r" "}))
+                    result_str += row['Timestamp'] + "|" + title_str + "|" + "[Thread](" + row['Permalinks'] + ")\n"
+
+            wiki.edit(content=result_str, reason="Automated Update from " + datetime.today().strftime('%Y-%m-%d'))
