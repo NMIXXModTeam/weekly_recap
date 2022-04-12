@@ -1,6 +1,7 @@
 import discord
 import os
 from myfunctions import recap
+from myfunctions import update_wiki
 
 client = discord.Client()
 
