@@ -212,8 +212,6 @@ def update_wiki():
   subreddit_name = "nmixx"
   subreddit = reddit.subreddit(subreddit_name)
 
-  import pandas as pd
-
   df = pd.DataFrame()
 
   titles=[]
