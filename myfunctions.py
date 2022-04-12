@@ -83,8 +83,8 @@ def recap():
   if not news_articles.empty:
       result_str += "\n\n"
       result_str += "#News & Articles\n"
-      result_str += "|**Date**|**Title**|**Thread**|\n"
-      result_str += ":--|:--|:--|\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
       for index, row in news_articles.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
@@ -94,8 +94,8 @@ def recap():
   #if not sns.empty:
   #    result_str += "\n\n"
   #    result_str += "#Social Media\n"
-  #    result_str += "|**Date**|**Title**|**Thread**|\n"
-  #    result_str += ":--|:--|:--|\n"
+  #    result_str += "Date|Title|Thread\n"
+  #    result_str += "---|---|---\n"
   #    for index, row in sns.iterrows():
   #        title_str = row['Title'].translate(str.maketrans({"[": r"(",
   #                                                          "]": r")",
@@ -108,8 +108,8 @@ def recap():
 
       if not sns_twitter.empty:
           result_str += "\n**Twitter**\n\n"
-          result_str += "|**Date**|**Title**|**Thread**|\n"
-          result_str += ":--|:--|:--|\n"
+          result_str += "Date|Title|Thread\n"
+          result_str += "---|---|---\n"
           for index, row in sns_twitter.iterrows():
               title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                 "]": r")",
@@ -118,8 +118,8 @@ def recap():
 
       if not sns_instagram.empty:
           result_str += "\n**Instagram**\n\n"
-          result_str += "|**Date**|**Title**|**Thread**|\n"
-          result_str += ":--|:--|:--|\n"
+          result_str += "Date|Title|Thread\n"
+          result_str += "---|---|---\n"
           for index, row in sns_instagram.iterrows():
               title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                 "]": r")",
@@ -128,8 +128,8 @@ def recap():
 
       if not sns_tiktok.empty:
           result_str += "\n**TikTok**\n\n"
-          result_str += "|**Date**|**Title**|**Thread**|\n"
-          result_str += ":--|:--|:--|\n"
+          result_str += "Date|Title|Thread\n"
+          result_str += "---|---|---\n"
           for index, row in sns_tiktok.iterrows():
               title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                 "]": r")",
@@ -138,8 +138,8 @@ def recap():
 
       if not sns_weibo.empty:
           result_str += "\n**Weibo**\n\n"
-          result_str += "|**Date**|**Title**|**Thread**|\n"
-          result_str += ":--|:--|:--|\n"
+          result_str += "Date|Title|Thread\n"
+          result_str += "---|---|---\n"
           for index, row in sns_weibo.iterrows():
               title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                 "]": r")",
@@ -149,8 +149,8 @@ def recap():
   if not vlives.empty:
       result_str += "\n\n"
       result_str += "#V Lives\n"
-      result_str += "|**Date**|**Title**|**Thread**|\n"
-      result_str += ":--|:--|:--|\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
       for index, row in vlives.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
@@ -160,8 +160,8 @@ def recap():
   if not variety.empty:
       result_str += "\n\n"
       result_str += "#Variety\n"
-      result_str += "|**Date**|**Title**|**Thread**|\n"
-      result_str += ":--|:--|:--|\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
       for index, row in variety.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
@@ -171,8 +171,8 @@ def recap():
   if not bts.empty:
       result_str += "\n\n"
       result_str += "#Behind The Scenes\n"
-      result_str += "|**Date**|**Title**|**Thread**|\n"
-      result_str += ":--|:--|:--|\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
       for index, row in bts.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
@@ -182,8 +182,8 @@ def recap():
   if not videos.empty:
       result_str += "\n\n"
       result_str += "#Videos\n"
-      result_str += "|**Date**|**Title**|**Thread**|\n"
-      result_str += ":--|:--|:--|\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
       for index, row in videos.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
