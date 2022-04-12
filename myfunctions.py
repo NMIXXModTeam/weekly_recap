@@ -249,10 +249,6 @@ def update_wiki():
 
       df = df[df['Submission Date (UTC)']>=rv_date]
 
-      print(rv_date)
-      print(df['Submission Date (UTC)'][0])
-      print(df)
-
       if not df.empty:
           df['Timestamp'] = df.apply(lambda row: row['Title'].split(" ")[0], axis=1)
 
