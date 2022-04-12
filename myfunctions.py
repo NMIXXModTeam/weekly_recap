@@ -295,8 +295,8 @@ def update_wiki():
 
               if not variety_mixxtory.empty:
                   result_str += "\n##MIXXTORY\n"
-                  result_str += "|Date|Title|Thread|\n"
-                  result_str += "---|---|---|\n"
+                  result_str += "Date|Title|Thread\n"
+                  result_str += "---|---|---\n"
                   for index, row in variety_mixxtory.iterrows():
                       title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                         "]": r")",
@@ -305,8 +305,8 @@ def update_wiki():
 
               if not variety_picknmixx.empty:
                   result_str += "\n##PICK NMIXX\n"
-                  result_str += "|Date|Title|Thread|\n"
-                  result_str += "---|---|---|\n"
+                  result_str += "Date|Title|Thread\n"
+                  result_str += "---|---|---\n"
                   for index, row in variety_picknmixx.iterrows():
                       title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                         "]": r")",
@@ -315,8 +315,8 @@ def update_wiki():
 
               if not variety_videos.empty:
                   result_str += "\n##Video Appearances\n"
-                  result_str += "|Date|Title|Thread|\n"
-                  result_str += "---|---|---|\n"
+                  result_str += "Date|Title|Thread\n"
+                  result_str += "---|---|---\n"
                   for index, row in variety_videos.iterrows():
                       title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                         "]": r")",
@@ -325,8 +325,8 @@ def update_wiki():
 
               if not variety_radios.empty:
                   result_str += "\n##Radio Appearances\n"
-                  result_str += "|Date|Title|Thread|\n"
-                  result_str += "---|---|---|\n"
+                  result_str += "Date|Title|Thread\n"
+                  result_str += "---|---|---\n"
                   for index, row in variety_radios.iterrows():
                       title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                                         "]": r")",
