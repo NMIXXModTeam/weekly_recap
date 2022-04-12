@@ -264,17 +264,18 @@ def update_wiki():
       flair_string = ''
 
       for line in old_content.split('\n'):
-          if line[0] == "#" and line[1] != "#":
-              if "#Variety" in line:
-                  flair_string = "Variety"
-          if line[:2] == "##":
-              category_string = line[2:]
-          if line[0] == "2" and len(line.split("|")[0]) == 6:
-              line_values = line.split("|")
-              perm_link = line_values[2].replace("(", "")
-              perm_link = perm_link.replace(")", "")
-              new_df_row = {'Timestamp': line_values[0], 'Title': line_values[1], 'Flair': flair_string.strip(), 'Permalinks': perm_link.strip()}
-              df = df.append(new_df_row, ignore_index = True)
+          if len(line) > 1:
+            if line[0] == "#" and line[1] != "#":
+                if "#Variety" in line:
+                    flair_string = "Variety"
+            if line[:2] == "##":
+                category_string = line[2:]
+            if line[0] == "2" and len(line.split("|")[0]) == 6:
+                line_values = line.split("|")
+                perm_link = line_values[2].replace("(", "")
+                perm_link = perm_link.replace(")", "")
+                new_df_row = {'Timestamp': line_values[0], 'Title': line_values[1], 'Flair': flair_string.strip(), 'Permalinks': perm_link.strip()}
+                df = df.append(new_df_row, ignore_index = True)
 
 
       df = df.sort_values(by='Timestamp', ascending=1)
