@@ -194,7 +194,7 @@ def recap():
     text_file.write(result_str)
 
     
-def update_wiki:
+def update_wiki():
   from datetime import datetime
 
   # Define user agent
