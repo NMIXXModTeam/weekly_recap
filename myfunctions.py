@@ -245,7 +245,7 @@ def update_wiki():
   for wiki in wiki_list:
       rv_date = pd.to_datetime(wiki.revision_date, unit='s')
 
-      old_content = variety_wiki.content_md
+      old_content = wiki.content_md
 
       df = df[df['Submission Date (UTC)']>=rv_date]
 
