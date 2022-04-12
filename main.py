@@ -19,5 +19,8 @@ async def on_message(message):
     with open('weeklyrecap.txt', 'rb') as fp:
       await message.channel.send(file=discord.File(fp, 'weeklyrecap.txt'))
 #    await message.channel.send(recap())
+  elif message.content.startswith("$update_wiki"):
+    update_wiki()
+    await message.channel.send("Updated Wiki Pages")
     
 client.run(os.getenv('TOKEN'))
