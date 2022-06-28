@@ -67,12 +67,21 @@ def recap():
   df['Title'] = df['Title'].str[7:]
 
   news_articles  = df[(df['Flair'] == 'News') | (df['Flair'] == 'Article')]
+  teasers = df[(df['Flair'] == 'Teaser')]
+  cfs = df[(df['Flair'] == 'CF')]
   sns = df[(df['Flair'] == 'SNS')]
   vlives = df[(df['Flair'] == 'V Live')]
   variety = df[(df['Flair'] == 'Variety')]
   bts = df[(df['Flair'] == 'Behind The Scenes')]
+  dance_practices = df[(df['Flair'] == 'Dance Practice')]
+  performances = df[(df['Flair'] == 'Performance')]
   videos = df[(df['Flair'] == 'Video')]
-
+  audios = df[(df['Flair'] == 'Audio')]
+  images = df[(df['Flair'] == 'Image')]
+  lives = df[(df['Flair'] == 'Live')]
+  interactions = df[(df['Flair'] == 'Interaction')]
+  
+  
   sns_twitter = sns[(sns['Title'].str.contains("twitter", case=False))]
   sns_instagram = sns[(sns['Title'].str.contains("instagram", case=False))]
   sns_tiktok = sns[(sns['Title'].str.contains("tiktok", case=False))]
@@ -102,6 +111,28 @@ def recap():
   #                                                          "|": r" "}))
   #        result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
 
+  if not teasers.empty:
+      result_str += "\n\n"
+      result_str += "#Teasers\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in teasers.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+  
+  if not cfs.empty:
+      result_str += "\n\n"
+      result_str += "#Commercial Films\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in cfs.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+  
   if not sns.empty:
       result_str += "\n\n"
       result_str += "#Social Media\n"
@@ -179,12 +210,78 @@ def recap():
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
           
+  if not dance_practices.empty:
+      result_str += "\n\n"
+      result_str += "#Dance Practices\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in dance_practices.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+  if not performances.empty:
+      result_str += "\n\n"
+      result_str += "#Performances\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in performances.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+      
   if not videos.empty:
       result_str += "\n\n"
       result_str += "#Videos\n"
       result_str += "Date|Title|Thread\n"
       result_str += "---|---|---\n"
       for index, row in videos.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+  if not audios.empty:
+      result_str += "\n\n"
+      result_str += "#Audios\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in audios.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+  if not images.empty:
+      result_str += "\n\n"
+      result_str += "#Images\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in images.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+  if not lives.empty:
+      result_str += "\n\n"
+      result_str += "#Lives\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in lives.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+          
+  if not interactions.empty:
+      result_str += "\n\n"
+      result_str += "#Interactions\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in interactions.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
                                                             "|": r" "}))
