@@ -80,6 +80,7 @@ def recap():
   images = df[(df['Flair'] == 'Image')]
   lives = df[(df['Flair'] == 'Live')]
   interactions = df[(df['Flair'] == 'Interaction')]
+  song_covers = df[(df['Flair'] == 'Song Cover')]
   
   
   sns_twitter = sns[(sns['Title'].str.contains("twitter", case=False))]
@@ -221,17 +222,18 @@ def recap():
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
           
-  if not performances.empty:
+  if not song_covers.empty:
       result_str += "\n\n"
-      result_str += "#Performances\n"
+      result_str += "#Song Covers\n"
       result_str += "Date|Title|Thread\n"
       result_str += "---|---|---\n"
-      for index, row in performances.iterrows():
+      for index, row in song_covers.iterrows():
           title_str = row['Title'].translate(str.maketrans({"[": r"(",
                                                             "]": r")",
                                                             "|": r" "}))
-          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
-      
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"   
+               
+          
   if not videos.empty:
       result_str += "\n\n"
       result_str += "#Videos\n"
