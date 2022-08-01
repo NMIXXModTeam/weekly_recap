@@ -66,7 +66,7 @@ def recap():
   
   df['Title'] = df['Title'].str[7:]
 
-  mvs = df[(df['Flair'] == 'Song MV')]
+  mvs = df[(df['Flair'] == 'MV')]
   news_articles  = df[(df['Flair'] == 'News') | (df['Flair'] == 'Article')]
   teasers = df[(df['Flair'] == 'Teaser')]
   cfs = df[(df['Flair'] == 'CF')]
