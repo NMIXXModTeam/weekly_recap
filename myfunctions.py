@@ -71,7 +71,7 @@ def recap():
   teasers = df[(df['Flair'] == 'Teaser')]
   cfs = df[(df['Flair'] == 'CF')]
   sns = df[(df['Flair'] == 'SNS')]
-  vlives = df[(df['Flair'] == 'V Live')]
+  vlives = df[(df['Flair'] == 'V LIVE')]
   variety = df[(df['Flair'] == 'Variety')]
   bts = df[(df['Flair'] == 'Behind The Scenes')]
   dance_practices = df[(df['Flair'] == 'Dance Practice')]
