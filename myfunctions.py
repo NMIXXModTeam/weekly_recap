@@ -66,6 +66,7 @@ def recap():
   
   df['Title'] = df['Title'].str[7:]
 
+  mvs = df[(df['Flair'] == 'Song MV')]
   news_articles  = df[(df['Flair'] == 'News') | (df['Flair'] == 'Article')]
   teasers = df[(df['Flair'] == 'Teaser')]
   cfs = df[(df['Flair'] == 'CF')]
@@ -90,6 +91,17 @@ def recap():
 
   result_str = "#Weekly r/NMIXX Recap\n"
 
+  if not mvs.empty:
+      result_str += "\n\n"
+      result_str += "#Music Videos\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in mvs.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+  
   if not news_articles.empty:
       result_str += "\n\n"
       result_str += "#News & Articles\n"
