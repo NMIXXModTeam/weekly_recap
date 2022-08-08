@@ -222,7 +222,18 @@ def recap():
                                                             "]": r")",
                                                             "|": r" "}))
           result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
-          
+  
+  if not performances.empty:
+      result_str += "\n\n"
+      result_str += "#Performances\n"
+      result_str += "Date|Title|Thread\n"
+      result_str += "---|---|---\n"
+      for index, row in performances.iterrows():
+          title_str = row['Title'].translate(str.maketrans({"[": r"(",
+                                                            "]": r")",
+                                                            "|": r" "}))
+          result_str += "|" + row['Timestamp'] + "|" + title_str + "|" + "[Thread](https://reddit.com" + row['Permalinks'] + ")\n"
+  
   if not dance_practices.empty:
       result_str += "\n\n"
       result_str += "#Dance Practices\n"
